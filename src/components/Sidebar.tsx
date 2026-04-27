@@ -1,21 +1,35 @@
 import React from 'react'
 
-const modules = [
+export const MODULES = [
   'Overview',
   'Geohazard',
   'Predictive Maintenance',
   'Fleet Intelligence',
   'Ore Optimization',
   'Safety AI'
-]
+] as const
 
-export default function Sidebar() {
+type ModuleType = (typeof MODULES)[number]
+
+export default function Sidebar({
+  selected,
+  onSelect,
+}: {
+  selected: ModuleType
+  onSelect: (m: ModuleType) => void
+}) {
   return (
     <aside className="sidebar">
       <div className="brand">FIMP</div>
       <nav>
-        {modules.map((m) => (
-          <button key={m} className="nav-item">{m}</button>
+        {MODULES.map((m) => (
+          <button
+            key={m}
+            className={`nav-item ${selected === m ? 'active' : ''}`}
+            onClick={() => onSelect(m)}
+          >
+            {m}
+          </button>
         ))}
       </nav>
     </aside>

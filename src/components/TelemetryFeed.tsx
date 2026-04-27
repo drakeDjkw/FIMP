@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useStreams } from '../streams/StreamsContext'
 
 export type TelemetryMessage = {
   id: string
@@ -38,14 +39,26 @@ function sampleMessage() {
 }
 
 export default function TelemetryFeed() {
+  const streams = (() => {
+    try {
+      return useStreams()
+    } catch (e) {
+      return null
+    }
+  })()
+
   const [messages, setMessages] = useState<TelemetryMessage[]>([])
 
   useEffect(() => {
+    if (streams) {
+      setMessages(streams.telemetry.slice(0, 20))
+      return
+    }
     const interval = setInterval(() => {
       setMessages((s) => [sampleMessage(), ...s].slice(0, 20))
     }, 3000)
     return () => clearInterval(interval)
-  }, [])
+  }, [streams])
 
   return (
     <div className="telemetry">

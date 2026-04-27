@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import TelemetryFeed from './TelemetryFeed'
 import { vi } from 'vitest'
