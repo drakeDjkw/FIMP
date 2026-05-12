@@ -1,37 +1,83 @@
-# FIMP — Freeport Intelligent Mining Platform
+# FIMP — Freeport Intelligence Mining Platform
 
-FIMP is a live operations dashboard for large-scale open-pit mining. It combines real-time telemetry, IoT sensor streams, and AI models to provide situational awareness and decision support across geohazard monitoring, predictive maintenance, fleet operations, ore optimization, and safety.
+A real-time AI operations dashboard for **PT Freeport Indonesia (PTFI) Grasberg** — the world's largest gold mine and second-largest copper mine. Combines live telemetry, IoT sensor streams, digital twin models, and AI to provide situational awareness and decision support across processing, maintenance, fleet, and safety operations.
 
-Core ideas
-- Single-pane operations: sidebar modules + persistent right-panel telemetry
-- Real-time streams (radar, rainfall, sensor telemetry) and periodic ML predictions
-- Explainability for critical models (feature importance, risk decomposition)
+---
 
-Interactive modules (click any in the left sidebar)
-- Overview — KPI row (ore processed, fleet availability, geohazard alerts, AI predictions), live alert strip, rainfall forecast chart (ConvLSTM), ore grade chart (XGBoost), equipment health list, event log
-- Geohazard — Landslide risk score 87% for Zone B7, Bayesian P(Landslide|Rainfall) model, zone risk matrix bars, live IoT sensor readings (soil moisture, displacement, pore pressure), feature importance breakdown
-- Predictive Maintenance — Full asset health table (HT-042 hydraulic failure in 18h, crusher vibration, belt tension), 214 assets monitored, 38% downtime reduction
-- Fleet Intelligence — 48-truck grid map (active/maintenance/standby), fuel efficiency +14%, 92-day collision-free streak, cycle time –18%
-- Ore Optimization — Block-level grade prediction, mill feed blend AI, Cu/Au recovery rates
-- Safety AI — 6 computer-vision modules (PPE, fatigue, gas detection, hazard zones), CH4 alert Sector D2, 127 days without incident
+## Live Preview
 
-Right panel (persistent)
-- Grasberg geohazard radar map (live)
-- Live AI telemetry feed (updates every 3s)
-- Real-time rainfall gauge
-- Model performance badges (ConvLSTM, XGBoost, GPT-4o)
+> Run the dev server locally to see the full interactive dashboard.
 
-Models and algorithms used
-- ConvLSTM for short-term rainfall forecasting and temporal geohazard signals
-- XGBoost for block-level ore grade prediction and feature importance
-- Bayesian inference for conditional landslide probability P(Landslide|Rainfall)
-- Computer vision modules (edge models) for safety detections
-- GPT-4o for natural-language summarization of events and operator guidance
+```bash
+# 1. Install dependencies
+npm install
 
-Quick notes
-- This repo currently contains documentation; UI and data backends are out-of-scope until requested.
-- If you want, I can scaffold a minimal React app with the sidebar + panels to demonstrate layout and interactivity.
+# 2. Start the dev server
+npm run dev
+```
 
-Contact
-- Maintainer: Freeport Intelligent Mining Platform team
+Opens automatically at **http://localhost:5173**
+
+To also stream mock WebSocket telemetry in a second terminal:
+
+```bash
+npm run mock-ws
+# WebSocket server starts at ws://localhost:8081
+# In the app: switch the top-right toggle to "WebSocket"
+```
+
+---
+
+## Platform Modules
+
+All modules are scoped to **Grasberg (PTFI), Indonesia**. Click any item in the left sidebar to navigate.
+
+| Module | What it shows |
+|---|---|
+| **Overview** | KPI cards (copper production gain, +200M lbs output, +22% efficiency, −30% downtime), active site status, strategic partners |
+| **Real-time Processing** | 6 live plant metrics updating every 2s — throughput, recovery rate, energy, reagent dosage, pH, airflow — each shown vs. AI-adjusted baseline |
+| **Ore Sorting** | Live metal recovery rate and throughput, XRT/NIR sensor array status, energy and chemical savings |
+| **Digital Twin** | Virtual mine model with 15,300 sensors and 3.4M geo-points — live sync timestamps and running AI models |
+| **Predictive Maintenance** | 8 assets (haul trucks, shovels, crushers, mill) with animated health bars and AI failure predictions |
+| **Fleet Intelligence** | 8-truck fleet with real-time speed/cycle updates, route deviation alerts, WWT integration |
+| **Safety & 5G** | PTFI underground zones with 5G coverage, worker tracking, live safety index, remote-operated equipment |
+
+Right panel (persistent across all modules): live AI telemetry feed updating every 3s with real operational events.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| UI framework | React 18 + TypeScript |
+| Build tool | Vite 5 |
+| Schema validation | Ajv 8 (JSON Schema) |
+| WebSocket | Native browser WS + Node.js `ws` mock server |
+| Testing | Vitest + Testing Library |
+| Component explorer | Storybook 7 |
+| Cloud platform | Accenture (data analytics) |
+| Hybrid infra | Nutanix (remote-site connectivity) |
+| AI models | McKinsey custom models + FCX-AI |
+| Fleet data | WWT integration |
+
+---
+
+## Scripts
+
+```bash
+npm run dev           # Start dev server at http://localhost:5173
+npm run build         # Production build
+npm run preview       # Preview production build
+npm run mock-ws       # Mock WebSocket server at ws://localhost:8081
+npm run test          # Run unit tests
+npm run test:coverage # Test coverage report
+npm run storybook     # Component explorer at http://localhost:6006
+```
+
+---
+
+## Contact
+
+- Maintainer: Freeport Intelligence Mining Platform team
 - Repository: drakeDjkw/FIMP
