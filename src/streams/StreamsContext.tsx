@@ -7,6 +7,9 @@ type Streams = {
   telemetry: TelemetryMessage[]
 }
 
+const ajv = new Ajv({ strict: false })
+const validate = ajv.compile(schema as object)
+
 const StreamsContext = createContext<Streams | null>(null)
 
 export function useStreams() {
@@ -27,9 +30,6 @@ export function StreamsProvider({
   const [telemetry, setTelemetry] = useState<TelemetryMessage[]>([])
   const wsRef = useRef<WebSocket | null>(null)
   const backoffRef = useRef(500)
-
-  const ajv = new Ajv()
-  const validate = ajv.compile(schema as object)
 
   useEffect(() => {
     let stopped = false

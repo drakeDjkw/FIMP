@@ -35,3 +35,23 @@ Quick notes
 Contact
 - Maintainer: Freeport Intelligent Mining Platform team
 - Repository: drakeDjkw/FIMP
+ 
+ 
+ Request for Guidance Regarding My Absence from Philosophy Classes
+ 
+ Dear Professor,
+
+I hope you are doing well.
+
+My name is Sandrakh Yikwa, and I am a student in your Philosophy course. I would like to sincerely apologize for my absence from classes from January until the end of April.
+
+During this period, I was in Indonesia handling important matters related to Papuan students across Russia in my capacity as a coordinator. This responsibility required my full attention and extended my stay longer than originally planned.
+
+I have recently returned to Russia and am fully committed to continuing my studies. I understand the importance of regular attendance and regret any inconvenience my absence may have caused.
+
+I would greatly appreciate your guidance on what steps I should take to catch up with the course materials, assignments, and any requirements necessary to successfully complete the class.
+
+Thank you very much for your understanding and consideration. I look forward to your advice.
+
+Sincerely,
+Sandrakh Yikwa
